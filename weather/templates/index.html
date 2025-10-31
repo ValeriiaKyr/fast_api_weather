@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>City Weather Scores</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>City Weather Scores</h1>
+
+        <form method="get" action="/">
+            <label>Start Date:
+                <input type="date" name="start_date" value="{{ start_date or '' }}">
+            </label>
+            <label>End Date:
+                <input type="date" name="end_date" value="{{ end_date or '' }}">
+            </label>
+            <button type="submit">Get Data</button>
+        </form>
+
+        {% if cities %}
+        <table>
+            <tr>
+                <th>City</th>
+                <th>Country</th>
+                <th>Score</th>
+            </tr>
+            {% for city in cities %}
+            <tr>
+                <td>{{ city.city }}</td>
+                <td>{{ city.country }}</td>
+                <td><strong>{{ city.score | round(2) }}</strong></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No data available. Try selecting a date range.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
