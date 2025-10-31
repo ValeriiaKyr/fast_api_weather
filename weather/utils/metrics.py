@@ -16,9 +16,7 @@ def score_humidity(humidity: float) -> float:
 
 
 def score_cloud_cover(cloud: float) -> float:
-    if cloud <= 25:
-        return max(0, 10 - abs(cloud - 25) / 2.5)
-    return max(0, 10 - abs(cloud - 25) / 7.5)
+    return max(0, 10 - abs(cloud - 25) / 2.5)
 
 
 def total_score(temp, speed, humidity, cloud):
