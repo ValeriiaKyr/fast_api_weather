@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>City Weather Scores</title>
+    <!-- łączenie z arkuszem stylów CSS znajdującym się w folderze static -->
     <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>City Weather Scores</h1>
 
+        <!-- formularz do wyboru zakresu dat dla danych pogodowych -->
         <form method="get" action="/">
             <label>Start Date:
                 <input type="date" name="start_date" value="{{ start_date or '' }}">
@@ -19,6 +21,7 @@
             <button type="submit">Get Data</button>
         </form>
 
+        <!-- sprawdzenie, czy dostępne są dane o miastach -->
         {% if cities %}
         <table>
             <tr>
@@ -26,6 +29,7 @@
                 <th>Country</th>
                 <th>Score</th>
             </tr>
+            <!-- iteracja po liście miast i wyświetlenie ich danych -->
             {% for city in cities %}
             <tr>
                 <td>{{ city.city }}</td>
@@ -35,6 +39,7 @@
             {% endfor %}
         </table>
         {% else %}
+            <!-- komunikat, gdy brak dostępnych danych pogodowych -->
             <p>No data available. Try selecting a date range.</p>
         {% endif %}
     </div>
